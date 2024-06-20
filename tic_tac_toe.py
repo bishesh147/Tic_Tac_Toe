@@ -22,21 +22,37 @@ start_text = font.render("Start Game", True, BLACK)
 
 
 running = True
+start_screen_run = True
+
+
+# Start screen
+while start_screen_run:
+    start_rect = pygame.Rect(200, 300, 400, 100)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            start_screen_run = False
+            running = False
+        
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if start_rect.collidepoint(event.pos):
+                start_screen_run = False
+
+    screen.fill(WHITE)
+
+    pygame.draw.rect(screen, BLUE, start_rect)
+    screen.blit(start_text, (200, 300))
+    
+    pygame.display.flip()
+
 
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-        screen.fill(WHITE)
+    screen.fill(WHITE)
 
-
-        # Start screen
-        start_rect = pygame.Rect(200, 300, 400, 100)
-        pygame.draw.rect(screen, BLUE, start_rect)
-        screen.blit(start_text, (200, 300))
-        
-        pygame.display.flip()
-
+    pygame.display.flip()
 pygame.quit()
 

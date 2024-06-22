@@ -99,52 +99,7 @@ while running:
                 screen.blit(x_text, (160+150*j, 60+150*i))
             if game_status[i][j] == "O":
                 screen.blit(o_text, (160+150*j, 60+150*i))
-    
-
-    result = game_logic.determine_winner(game_status)
-    if result[1] == 1:
-        pygame.draw.line(screen, RED, (150, 50+75), (600, 50+75), 10)
-        pygame.display.flip()
-        pygame.time.delay(2000)
-        game_status = [[".",".","."], [".",".","."], [".",".","."]]
-        turn = True
-    elif result[1] == 2:
-        pygame.draw.line(screen, RED, (150+75, 50), (150+75, 500), 10)
-        pygame.display.flip()
-        pygame.time.delay(2000)
-        game_status = [[".",".","."], [".",".","."], [".",".","."]]
-        turn = True
-    elif result[1] == 3:
-        pygame.draw.line(screen, RED, (150, 50), (600, 500), 10)
-        pygame.display.flip()
-        pygame.time.delay(2000)
-        game_status = [[".",".","."], [".",".","."], [".",".","."]]
-        turn = True
-    elif result[1] == 4:
-        pygame.draw.line(screen, RED, (150+75+150, 50), (150+75+150, 500), 10)
-        pygame.display.flip()
-        pygame.time.delay(2000)
-        game_status = [[".",".","."], [".",".","."], [".",".","."]]
-        turn = True
-    elif result[1] == 5:
-        pygame.draw.line(screen, RED, (150+75+300, 50), (150+75+300, 500), 10)
-        pygame.display.flip()
-        pygame.time.delay(2000)
-        game_status = [[".",".","."], [".",".","."], [".",".","."]]
-        turn = True
-    elif result[1] == 6:
-        pygame.draw.line(screen, RED, (150, 50+75+150), (600, 50+75+150), 10)
-        pygame.display.flip()
-        pygame.time.delay(2000)
-        game_status = [[".",".","."], [".",".","."], [".",".","."]]
-        turn = True
-    elif result[1] == 7:
-        pygame.draw.line(screen, RED, (150, 50+75+300), (600, 50+75+300), 10)
-        pygame.display.flip()
-        pygame.time.delay(2000)
-        game_status = [[".",".","."], [".",".","."], [".",".","."]]
-        turn = True
-     
+         
     pygame.display.flip()
 pygame.quit()
 

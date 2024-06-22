@@ -20,6 +20,10 @@ font = pygame.font.SysFont(None, 100)
 # Render font
 start_text = font.render("Start Game", True, BLACK)
 
+font = pygame.font.SysFont(None, 230)
+x_text = font.render("X", True, BLUE)
+o_text = font.render("O", True, GREEN)
+
 
 running = True
 start_screen_run = True
@@ -55,10 +59,26 @@ while start_screen_run:
     pygame.display.flip()
 
 
+turn = True #True is for X move, False is for O move
+game_status = [[".", ".", "."], [".", ".", "."], [".", ".", "."]]
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+        if event.type == pygame.MOUSEBUTTONDOWN: #Check for mouse button press
+            mouse_pos = event.pos   # Get the position of the mouse click, gives a tuple
+            mouse_pos = list(mouse_pos)
+            if mouse_pos[0] >= 150 and mouse_pos[0] <= 600 and mouse_pos[1] >= 50 and mouse_pos[1] <= 500:
+                x = (mouse_pos[0]-150)//150
+                y = (mouse_pos[1]-50)//150
+                if game_status[x][y] == ".":
+                    if (turn):
+                        game_status[x][y] = "X"
+                        turn = False
+                    else:
+                        game_status[x][y] = "O"
+                        turn = True
 
     screen.fill(WHITE)
 
@@ -67,6 +87,13 @@ while running:
         pygame.draw.line(screen, BLACK, (150, 50+150*i), (600, 50+150*i), 10)
         pygame.draw.line(screen, BLACK, (150+150*i, 50), (150+150*i, 500), 10)
 
+    for i in range(3):
+        for j in range(3):
+            if game_status[i][j] == "X":
+                screen.blit(x_text, (160+150*i, 60+150*j))
+            if game_status[i][j] == "O":
+                screen.blit(o_text, (160+150*i, 60+150*j))
+            
     pygame.display.flip()
 pygame.quit()
 
